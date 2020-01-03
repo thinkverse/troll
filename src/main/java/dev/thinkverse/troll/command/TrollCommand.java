@@ -4,6 +4,7 @@ import dev.thinkverse.troll.Troll;
 import dev.thinkverse.troll.command.trolls.BlindCommand;
 import dev.thinkverse.troll.command.trolls.FlingCommand;
 import dev.thinkverse.troll.command.trolls.SlapCommand;
+import dev.thinkverse.troll.command.trolls.SpeakCommand;
 import dev.thinkverse.troll.utils.Logger;
 import dev.thinkverse.troll.utils.Util;
 import dev.thinkverse.troll.utils.commands.SubCommand;
@@ -26,12 +27,13 @@ public class TrollCommand implements CommandExecutor, TabCompleter {
 
   private ArrayList<SubCommand> trolls = new ArrayList<>();
 
-  private final String[] COMMANDS = {"slap", "fling", "blind"};
+  private final String[] COMMANDS = {"slap", "fling", "blind", "speak"};
 
   public TrollCommand() {
     trolls.add(new SlapCommand());
     trolls.add(new BlindCommand());
     trolls.add(new FlingCommand());
+    trolls.add(new SpeakCommand());
   }
 
   @Override
