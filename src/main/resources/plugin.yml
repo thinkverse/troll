@@ -1,0 +1,27 @@
+name: Troll
+version: ${project.version}
+main: dev.thinkverse.troll.Troll
+api-version: 1.15
+authors: [Thinkverse]
+description: 1.15.1 Open Source Troll plugin
+website: thinkverse.dev
+commands:
+  troll:
+    description: Troll specific player
+    permission: troll.use
+    usage: /troll <type> <player>
+permissions:
+  troll.use:
+    description: Allow use of troll command.
+    default: true
+  troll.bypass:
+    description: Bypass specific troll commands.
+    default: false
+  troll.bypass.*:
+    description: Bypass all troll commands.
+    default: false
+  troll.*:
+    description: Troll wildcard permission.
+    default: op
+    children:
+      troll.use: true

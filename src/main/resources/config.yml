@@ -1,0 +1,18 @@
+# Configuration options for specific trolls.
+troll:
+  # Message displayed with no permissions.
+  # - Support for Bukkit chat colors
+  no-permission: "&cYou don't have permission to run that command."
+
+  # Configuration for slap troll
+  # - strength equals the damage a player takes, limited to 10 = 5 hearts.
+  # - default 1 = half a heart.
+  slap:
+    strength: 1.0
+
+  # Configuration for blindness troll
+  #  - duration is calculated by ticks, 20 ticks = 1 sec.
+  #  - default duration is 200, 200 ticks = 10 sec
+  blindness:
+    duration: 200
+    amplifier: 0
