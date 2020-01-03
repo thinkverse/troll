@@ -40,7 +40,6 @@ public class SpeakCommand extends SubCommand {
         if (target.hasPermission("troll.bypass.*") || target.hasPermission("troll.bypass.speak")) {
           player.sendMessage(String.format(Util.Chat("Too bad, %s can't be slapped"), target.getName()));
         } else {
-
           target.chat(message);
           player.sendMessage(String.format(Util.Chat("&aYou spoke as %s."), target.getName()));
         }
