@@ -37,7 +37,7 @@ public class TrollCommand implements CommandExecutor, TabCompleter {
   @Override
   public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
     if(!(sender instanceof Player) || !sender.hasPermission("troll.use")) {
-      command.setPermissionMessage(Util.Chat(plugin.getConfig().getString("troll.no-permission")));
+      sender.sendMessage(Util.Chat(plugin.getConfig().getString("prefix") + plugin.getConfig().getString("no-permission")));
       return true;
     } else {
       final Player player = (Player) sender;
@@ -81,12 +81,14 @@ public class TrollCommand implements CommandExecutor, TabCompleter {
   public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
     final List<String> completions = new ArrayList<String>();
 
-    if (args.length == 1) {
-      StringUtil.copyPartialMatches(args[0], Arrays.asList(COMMANDS), completions);
-    } else if (args.length == 2) {
-      for (Player player : Bukkit.getOnlinePlayers()) {
-        if (StringUtil.startsWithIgnoreCase(player.getName(), args[1])) {
-          completions.add(player.getName());
+    if (sender.hasPermission("troll.use")) {
+      if (args.length == 1) {
+        StringUtil.copyPartialMatches(args[0], Arrays.asList(COMMANDS), completions);
+      } else if (args.length == 2) {
+        for (Player player : Bukkit.getOnlinePlayers()) {
+          if (StringUtil.startsWithIgnoreCase(player.getName(), args[1])) {
+            completions.add(player.getName());
+          }
         }
       }
     }

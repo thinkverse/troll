@@ -8,7 +8,6 @@ website: thinkverse.dev
 commands:
   troll:
     description: Troll specific player
-    permission: troll.use
     usage: /troll <type> <player>
 permissions:
   troll.use:

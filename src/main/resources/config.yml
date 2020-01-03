@@ -1,9 +1,11 @@
-# Configuration options for specific trolls.
-troll:
-  # Message displayed with no permissions.
-  # - Support for Bukkit chat colors
-  no-permission: "&cYou don't have permission to run that command."
+# Plugin prefix
+prefix: "&e[&6Troll&e] "
 
+# Message displayed with no permissions.
+# - Support for Bukkit chat colors
+no-permission: "&4You don't have permission to run that command."
+
+troll:
   # Configuration for slap troll
   # - strength equals the damage a player takes, limited to 10 = 5 hearts.
   # - default 1 = half a heart.
@@ -12,7 +14,7 @@ troll:
 
   # Configuration for blindness troll
   #  - duration is calculated by ticks, 20 ticks = 1 sec.
-  #  - default duration is 200, 200 ticks = 10 sec
+  #  - default duration is 100, 100 ticks = 5 sec
   blindness:
-    duration: 200
+    duration: 100
     amplifier: 0

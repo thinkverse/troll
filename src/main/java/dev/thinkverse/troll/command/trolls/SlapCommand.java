@@ -28,11 +28,10 @@ public class SlapCommand extends SubCommand {
 
   @Override
   public void onCommand(Player player, String[] args) {
-    final double strength = plugin.getConfig().getDouble("troll.slap.strength");
+    double strength = plugin.getConfig().getDouble("troll.slap.strength");
 
-    if (strength > 10) {
-      plugin.getConfig().set("troll.slap.strength", 10);
-    }
+    /* Make sure server strength doesn't exceed 10 */
+    if (strength > 10) strength = 10;
 
     if (args.length == 1) {
       player.sendMessage(this.getUsage());
@@ -61,8 +60,11 @@ public class SlapCommand extends SubCommand {
           try {
             player_strength = Integer.parseInt(args[2]);
           } catch (NumberFormatException exception) {
-            Logger.log(Logger.LogLevel.WARNING, exception.getLocalizedMessage());
+            Logger.log(Logger.LogLevel.WARNING, exception.getMessage());
           }
+
+          /* Make sure the strength passed by the player doesn't exceed 10 */
+          if (player_strength > 10) player_strength = 10;
 
           target.damage(player_strength);
 

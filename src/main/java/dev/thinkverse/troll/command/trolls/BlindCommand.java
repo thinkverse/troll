@@ -59,7 +59,7 @@ public class BlindCommand extends SubCommand {
           try {
             player_duration = Integer.parseInt(args[2]);
           } catch (NumberFormatException exception) {
-            Logger.log(Logger.LogLevel.WARNING, exception.getLocalizedMessage());
+            Logger.log(Logger.LogLevel.WARNING, exception.getMessage());
           }
 
           target.addPotionEffect(PotionEffectType.BLINDNESS.createEffect(player_duration * 20, amplifier));
