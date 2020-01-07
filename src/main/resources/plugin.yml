@@ -19,6 +19,9 @@ permissions:
   troll.bypass.*:
     description: Bypass all troll commands.
     default: false
+  troll.admin:
+    description: Allow use of troll admin commands.
+    default: op
   troll.*:
     description: Troll wildcard permission.
     default: op
