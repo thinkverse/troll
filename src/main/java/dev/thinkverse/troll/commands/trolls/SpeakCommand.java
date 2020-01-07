@@ -1,11 +1,13 @@
-package dev.thinkverse.troll.command.trolls;
+package dev.thinkverse.troll.commands.trolls;
 
+import dev.thinkverse.troll.TrollPlugin;
 import dev.thinkverse.troll.utils.Util;
-import dev.thinkverse.troll.utils.commands.SubCommand;
+import dev.thinkverse.troll.commands.abstraction.SubCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 public class SpeakCommand extends SubCommand {
+
   @Override
   public String getName() {
     return "speak";
@@ -17,14 +19,17 @@ public class SpeakCommand extends SubCommand {
   }
 
   @Override
+  public String getPermission() { return null; }
+
+  @Override
   public String getUsage() {
     return "/troll speak <player>";
   }
 
   @Override
-  public void onCommand(Player player, String[] args) {
+  public void onCommand(TrollPlugin plugin, Player player, String[] args) {
     if (args.length <= 2) {
-      player.sendMessage(this.getUsage());
+      Util.message(player, this.getUsage());
     } else {
       final Player target = Bukkit.getPlayer(args[1]);
 
@@ -38,13 +43,14 @@ public class SpeakCommand extends SubCommand {
 
       if (target != null) {
         if (target.hasPermission("troll.bypass.*") || target.hasPermission("troll.bypass.speak")) {
-          player.sendMessage(String.format(Util.Chat("Too bad, %s can't be slapped"), target.getName()));
+          Util.message(player, String.format("Too bad, %s can't be slapped", target.getName()));
+
         } else {
           target.chat(message);
-          player.sendMessage(String.format(Util.Chat("&aYou spoke as %s."), target.getName()));
+          Util.message(player, String.format("&aYou spoke as %s.", target.getName()));
         }
       } else {
-        player.sendMessage(Util.Chat("&aPlayer doesn't exist."));
+        Util.message(player, "&aPlayer doesn't exist.");
       }
     }
   }

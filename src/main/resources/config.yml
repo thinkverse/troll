@@ -1,20 +1,16 @@
 # Plugin prefix
 prefix: "&e[&6Troll&e] "
-
 # Message displayed with no permissions.
-# - Support for Bukkit chat colors
 no-permission: "&4You don't have permission to run that command."
 
+# | Configuration
+# slap - strength equals the damage a player takes, limited to 10 = 5 hearts
+# slap - default 1 = half a heart.
+# blindness - duration is calculated by ticks, 20 ticks = 1 sec.
+# blindness - default duration is 100, 100 ticks = 5 sec
 troll:
-  # Configuration for slap troll
-  # - strength equals the damage a player takes, limited to 10 = 5 hearts.
-  # - default 1 = half a heart.
   slap:
     strength: 1.0
-
-  # Configuration for blindness troll
-  #  - duration is calculated by ticks, 20 ticks = 1 sec.
-  #  - default duration is 100, 100 ticks = 5 sec
   blindness:
     duration: 100
     amplifier: 0
