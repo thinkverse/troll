@@ -6,7 +6,7 @@
 
     <groupId>dev.thinkverse</groupId>
     <artifactId>troll</artifactId>
-    <version>0.0.2-alpha</version>
+    <version>0.0.3-alpha</version>
     <packaging>jar</packaging>
 
     <name>Troll</name>
