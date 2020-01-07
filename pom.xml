@@ -6,10 +6,10 @@
 
     <groupId>dev.thinkverse</groupId>
     <artifactId>troll</artifactId>
-    <version>0.0.1-alpha</version>
+    <version>0.0.2-alpha</version>
     <packaging>jar</packaging>
 
-    <name>Example</name>
+    <name>Troll</name>
 
     <description>1.15.1 Open Source Troll plugin</description>
     <properties>
