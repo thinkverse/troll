@@ -11,6 +11,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
 
 public class FlingCommand extends SubCommand {
+  @NotNull
   @Override
   public String getName() {
     return "fling";
@@ -27,13 +28,14 @@ public class FlingCommand extends SubCommand {
   @Override
   public String[] getPermissions() { return new String[0]; }
 
+  @NotNull
   @Override
   public String getUsage() {
     return "/troll fling <player>";
   }
 
   @Override
-  public void onCommand(TrollPlugin plugin, Player player, @NotNull String[] args) {
+  public void onCommand(@NotNull TrollPlugin plugin, @NotNull Player player, @NotNull String[] args) {
     if (args.length == 1) {
       Util.message(player, this.getUsage());
     } else if (args.length == 2) {

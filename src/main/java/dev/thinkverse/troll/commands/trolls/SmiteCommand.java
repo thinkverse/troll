@@ -10,6 +10,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
 
 public class SmiteCommand extends SubCommand {
+  @NotNull
   @Override
   public String getName() { return "smite"; }
 
@@ -22,11 +23,12 @@ public class SmiteCommand extends SubCommand {
   @Override
   public String[] getPermissions() { return new String[]{"troll.smite.damage", "troll.admin", "troll.*"}; }
 
+  @NotNull
   @Override
   public String getUsage() { return "/troll smite <player>"; }
 
   @Override
-  public void onCommand(TrollPlugin plugin, Player player, @NotNull String[] args) {
+  public void onCommand(@NotNull TrollPlugin plugin, @NotNull Player player, @NotNull String[] args) {
     final boolean damage = plugin.getDefaultConfig().getConfig().getBoolean("troll.smite.damage");
 
     if (args.length == 1) {

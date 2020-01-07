@@ -13,6 +13,7 @@ import java.util.Objects;
 
 public class BlindCommand extends SubCommand {
 
+  @NotNull
   @Override
   public String getName() {
     return "blind";
@@ -29,13 +30,14 @@ public class BlindCommand extends SubCommand {
   @Override
   public String[] getPermissions() { return new String[0]; }
 
+  @NotNull
   @Override
   public String getUsage() {
     return "/troll blind <player> [duration]";
   }
 
   @Override
-  public void onCommand(TrollPlugin plugin, Player player, @NotNull String[] args) {
+  public void onCommand(@NotNull TrollPlugin plugin, @NotNull Player player, @NotNull String[] args) {
     final int duration = plugin.getDefaultConfig().getConfig().getInt("troll.blindness.duration");
     final int amplifier = plugin.getDefaultConfig().getConfig().getInt("troll.blindness.amplifier");
 

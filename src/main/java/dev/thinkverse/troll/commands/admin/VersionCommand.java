@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 public class VersionCommand extends SubCommand {
+  @NotNull
   @Override
   public String getName() { return "version"; }
 
@@ -20,11 +21,12 @@ public class VersionCommand extends SubCommand {
   @Override
   public String[] getPermissions() { return new String[]{"troll.version", "troll.admin", "troll.*"}; }
 
+  @NotNull
   @Override
   public String getUsage() { return "/troll version"; }
 
   @Override
-  public void onCommand(TrollPlugin plugin, Player player, @NotNull String[] args) {
+  public void onCommand(@NotNull TrollPlugin plugin, @NotNull Player player, @NotNull String[] args) {
     if (!checkPermissions(player)) {
       Util.message(player, plugin.getDefaultConfig().getConfig().getString("prefix") + plugin.getDefaultConfig().getConfig().getString("no-permission"));
     } else if (args.length >= 2) {

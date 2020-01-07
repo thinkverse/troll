@@ -11,6 +11,7 @@ import java.util.Objects;
 
 public class SpeakCommand extends SubCommand {
 
+  @NotNull
   @Override
   public String getName() {
     return "speak";
@@ -27,13 +28,14 @@ public class SpeakCommand extends SubCommand {
   @Override
   public String[] getPermissions() { return new String[0]; }
 
+  @NotNull
   @Override
   public String getUsage() {
     return "/troll speak <player>";
   }
 
   @Override
-  public void onCommand(TrollPlugin plugin, Player player, @NotNull String[] args) {
+  public void onCommand(@NotNull TrollPlugin plugin, @NotNull Player player, @NotNull String[] args) {
     if (args.length <= 2) {
       Util.message(player, this.getUsage());
     } else {

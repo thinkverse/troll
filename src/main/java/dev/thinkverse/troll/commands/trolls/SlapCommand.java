@@ -14,6 +14,7 @@ public class SlapCommand extends SubCommand {
   private TrollPlugin plugin;
   private double strength;
 
+  @NotNull
   @Override
   public String getName() {
     return "slap";
@@ -30,13 +31,14 @@ public class SlapCommand extends SubCommand {
   @Override
   public String[] getPermissions() { return new String[0]; }
 
+  @NotNull
   @Override
   public String getUsage() {
     return "/troll slap <player> [strength]";
   }
 
   @Override
-  public void onCommand(TrollPlugin plugin, Player player, @NotNull String[] args) {
+  public void onCommand(@NotNull TrollPlugin plugin, @NotNull Player player, @NotNull String[] args) {
     this.setPlugin(plugin);
     this.setStrength(plugin.getDefaultConfig().getConfig().getDouble("troll.slap.strength"));
 
