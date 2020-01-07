@@ -51,7 +51,6 @@ public class FlingCommand extends SubCommand {
           Util.message(player, String.format("&aYou flinged %s away.", target.getName()));
         }
       }
-
     }
   }
 }
