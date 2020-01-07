@@ -7,6 +7,9 @@ import dev.thinkverse.troll.utils.enums.LogLevel;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffectType;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Objects;
 
 public class BlindCommand extends SubCommand {
 
@@ -32,7 +35,7 @@ public class BlindCommand extends SubCommand {
   }
 
   @Override
-  public void onCommand(TrollPlugin plugin, Player player, String[] args) {
+  public void onCommand(TrollPlugin plugin, Player player, @NotNull String[] args) {
     final int duration = plugin.getDefaultConfig().getConfig().getInt("troll.blindness.duration");
     final int amplifier = plugin.getDefaultConfig().getConfig().getInt("troll.blindness.amplifier");
 
@@ -41,7 +44,7 @@ public class BlindCommand extends SubCommand {
     } else if (args.length == 2) {
       final Player target = Bukkit.getPlayer(args[1]);
 
-      if (target != null) {
+      if (!Objects.isNull(target)) {
         if (target.hasPermission("troll.bypass.*") || target.hasPermission("troll.bypass.blind")) {
           Util.message(player, String.format("Too bad, %s has really good vision..", target.getName()));
         } else {
@@ -54,7 +57,7 @@ public class BlindCommand extends SubCommand {
     } else if (args.length > 2) {
       final Player target = Bukkit.getPlayer(args[1]);
 
-      if (target != null) {
+      if (!Objects.isNull(target)) {
         if (target.hasPermission("troll.bypass.*") || target.hasPermission("troll.bypass.blind")) {
           Util.message(player, String.format("Too bad, %s has really good vision..", target.getName()));
         } else {

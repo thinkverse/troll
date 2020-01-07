@@ -6,6 +6,9 @@ import dev.thinkverse.troll.commands.abstraction.SubCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Objects;
 
 public class FlingCommand extends SubCommand {
   @Override
@@ -30,13 +33,13 @@ public class FlingCommand extends SubCommand {
   }
 
   @Override
-  public void onCommand(TrollPlugin plugin, Player player, String[] args) {
+  public void onCommand(TrollPlugin plugin, Player player, @NotNull String[] args) {
     if (args.length == 1) {
       Util.message(player, this.getUsage());
     } else if (args.length == 2) {
       final Player target = Bukkit.getPlayer(args[1]);
 
-      if (target != null) {
+      if (!Objects.isNull(target)) {
         if (target.hasPermission("troll.bypass.*") || target.hasPermission("troll.bypass.fling")) {
           Util.message(player, String.format("Ooh, seems %s is stuck to the ground.", target.getName()));
         } else {

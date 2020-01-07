@@ -5,6 +5,9 @@ import dev.thinkverse.troll.utils.Util;
 import dev.thinkverse.troll.commands.abstraction.SubCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Objects;
 
 public class SpeakCommand extends SubCommand {
 
@@ -30,7 +33,7 @@ public class SpeakCommand extends SubCommand {
   }
 
   @Override
-  public void onCommand(TrollPlugin plugin, Player player, String[] args) {
+  public void onCommand(TrollPlugin plugin, Player player, @NotNull String[] args) {
     if (args.length <= 2) {
       Util.message(player, this.getUsage());
     } else {
@@ -44,7 +47,7 @@ public class SpeakCommand extends SubCommand {
 
       String message = buffer.toString().trim();
 
-      if (target != null) {
+      if (!Objects.isNull(target)) {
         if (target.hasPermission("troll.bypass.*") || target.hasPermission("troll.bypass.speak")) {
           Util.message(player, String.format("Too bad, %s can't be slapped", target.getName()));
 

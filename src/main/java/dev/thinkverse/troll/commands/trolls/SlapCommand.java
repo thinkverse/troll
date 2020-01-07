@@ -6,6 +6,9 @@ import dev.thinkverse.troll.commands.abstraction.SubCommand;
 import dev.thinkverse.troll.utils.enums.LogLevel;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Objects;
 
 public class SlapCommand extends SubCommand {
   private TrollPlugin plugin;
@@ -33,7 +36,7 @@ public class SlapCommand extends SubCommand {
   }
 
   @Override
-  public void onCommand(TrollPlugin plugin, Player player, String[] args) {
+  public void onCommand(TrollPlugin plugin, Player player, @NotNull String[] args) {
     this.setPlugin(plugin);
     this.setStrength(plugin.getDefaultConfig().getConfig().getDouble("troll.slap.strength"));
 
@@ -42,7 +45,7 @@ public class SlapCommand extends SubCommand {
     } else if (args.length == 2) {
       final Player target = Bukkit.getPlayer(args[1]);
 
-      if (target != null) {
+      if (!Objects.isNull(target)) {
         if (target.hasPermission("troll.bypass.*") || target.hasPermission("troll.bypass.slap")) {
           Util.message(player, String.format("&cToo bad, %s can't be slapped", target.getName()));
         } else {
@@ -55,7 +58,7 @@ public class SlapCommand extends SubCommand {
     } else if (args.length > 2) {
       final Player target = Bukkit.getPlayer(args[1]);
 
-      if (target != null) {
+      if (!Objects.isNull(target)) {
         if (target.hasPermission("troll.bypass.*") || target.hasPermission("troll.bypass.slap")) {
           Util.message(player, String.format("&cToo bad, %s can't be slapped", target.getName()));
         } else {

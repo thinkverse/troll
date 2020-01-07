@@ -4,6 +4,7 @@ import dev.thinkverse.troll.TrollPlugin;
 import dev.thinkverse.troll.commands.abstraction.SubCommand;
 import dev.thinkverse.troll.utils.Util;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 public class ReloadCommand extends SubCommand {
   @Override
@@ -28,7 +29,7 @@ public class ReloadCommand extends SubCommand {
   }
 
   @Override
-  public void onCommand(TrollPlugin plugin, Player player, String[] args) {
+  public void onCommand(TrollPlugin plugin, Player player, @NotNull String[] args) {
     if (!checkPermission(player)) {
       Util.message(player, plugin.getDefaultConfig().getConfig().getString("prefix") + plugin.getDefaultConfig().getConfig().getString("no-permission"));
     } else if (args.length >= 2) {

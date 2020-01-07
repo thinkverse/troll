@@ -5,6 +5,9 @@ import dev.thinkverse.troll.commands.abstraction.SubCommand;
 import dev.thinkverse.troll.utils.Util;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Objects;
 
 public class SmiteCommand extends SubCommand {
   @Override
@@ -23,7 +26,7 @@ public class SmiteCommand extends SubCommand {
   public String getUsage() { return "/troll smite <player>"; }
 
   @Override
-  public void onCommand(TrollPlugin plugin, Player player, String[] args) {
+  public void onCommand(TrollPlugin plugin, Player player, @NotNull String[] args) {
     final boolean damage = plugin.getDefaultConfig().getConfig().getBoolean("troll.smite.damage");
 
     if (args.length == 1) {
@@ -31,7 +34,7 @@ public class SmiteCommand extends SubCommand {
     } else if (args.length == 2) {
       final Player target = Bukkit.getPlayer(args[1]);
 
-      if (target != null) {
+      if (!Objects.isNull(target)) {
         if (target.hasPermission("troll.bypass.*") || target.hasPermission("troll.bypass.smite")) {
           Util.message(player, String.format("Ooh, seems Zeus likes %s.", target.getName()));
         } else {
@@ -45,7 +48,7 @@ public class SmiteCommand extends SubCommand {
       final Player target = Bukkit.getPlayer(args[1]);
       final boolean player_damage = Boolean.parseBoolean(args[2]);
 
-      if (target != null) {
+      if (!Objects.isNull(target)) {
         if (target.hasPermission("troll.bypass.*") || target.hasPermission("troll.bypass.smite")) {
           Util.message(player, String.format("Ooh, seems Zeus likes %s.", target.getName()));
         } else {

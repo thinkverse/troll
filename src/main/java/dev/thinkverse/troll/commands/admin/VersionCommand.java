@@ -5,6 +5,7 @@ import dev.thinkverse.troll.commands.abstraction.SubCommand;
 import dev.thinkverse.troll.utils.UpdateChecker;
 import dev.thinkverse.troll.utils.Util;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 public class VersionCommand extends SubCommand {
   @Override
@@ -23,7 +24,7 @@ public class VersionCommand extends SubCommand {
   public String getUsage() { return "/troll version"; }
 
   @Override
-  public void onCommand(TrollPlugin plugin, Player player, String[] args) {
+  public void onCommand(TrollPlugin plugin, Player player, @NotNull String[] args) {
     if (!checkPermissions(player)) {
       Util.message(player, plugin.getDefaultConfig().getConfig().getString("prefix") + plugin.getDefaultConfig().getConfig().getString("no-permission"));
     } else if (args.length >= 2) {
@@ -40,7 +41,7 @@ public class VersionCommand extends SubCommand {
 
       if (!current.equalsIgnoreCase(version)) {
         Util.message(player, String.format("&aUpdate available: &f%s", version));
-        Util.notify(player,"troll.notify", String.format(plugin.getDefaultConfig().getConfig().getString("prefix") + "&aUpdate available: &f%s", version));
+        Util.notify(player, "troll.notify", String.format(plugin.getDefaultConfig().getConfig().getString("prefix") + "&aUpdate available: &f%s", version));
       }
     });
   }
