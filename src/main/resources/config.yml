@@ -4,10 +4,14 @@ prefix: "&e[&6Troll&e] "
 no-permission: "&4You don't have permission to run that command."
 
 # | Configuration
-# slap - strength equals the damage a player takes, limited to 10 = 5 hearts
-# slap - default 1 = half a heart.
-# blindness - duration is calculated by ticks, 20 ticks = 1 sec.
-# blindness - default duration is 100, 100 ticks = 5 sec
+# slap
+#   strength equals the damage a player takes, limited to 10 = 5 hearts
+#   default 1 = half a heart.
+# blindness
+#   duration is calculated by ticks, 20 ticks = 1 sec.
+#   default duration is 100, 100 ticks = 5 sec
+# smite
+#   damage, boolean representing if player should take damage.
 troll:
   slap:
     strength: 1.0
