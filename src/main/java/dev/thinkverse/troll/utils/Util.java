@@ -15,6 +15,12 @@ public final class Util {
     Arrays.stream(message).map(Util::translate).forEach(Bukkit::broadcastMessage);
   }
 
+  public static void notify(CommandSender sender, String permission, String... message) {
+    Bukkit.getOnlinePlayers().stream().filter(player -> player.hasPermission(permission)).forEach(player -> {
+      if (player != sender) Util.message(player, message);
+    });
+  }
+
   public static String translate(String message) {
     return ChatColor.translateAlternateColorCodes((char) '&', message);
   }

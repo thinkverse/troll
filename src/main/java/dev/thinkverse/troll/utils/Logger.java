@@ -14,19 +14,19 @@ public final class Logger extends java.util.logging.Logger {
 
     switch (level) {
       case ERROR:
-        Util.message(Bukkit.getConsoleSender(),"&8[&c&lERROR&r&8] &f" + message);
+        Util.message(Bukkit.getConsoleSender(),"&8[&c&lERROR&r&8] &f - Troll" + message);
         break;
       case WARNING:
-        Util.message(Bukkit.getConsoleSender(),"&8[&6&lWARNING&r&8] &f" + message);
+        Util.message(Bukkit.getConsoleSender(),"&8[&6&lWARNING&r&8] &f - Troll" + message);
         break;
       case INFO:
-        Util.message(Bukkit.getConsoleSender(),"&8[&e&lINFO&r&8] &f" + message);
+        Util.message(Bukkit.getConsoleSender(),"&8[&e&lTroll&r&8] &f" + message);
         break;
       case SUCCESS:
-        Util.message(Bukkit.getConsoleSender(),"&8[&a&lSUCCESS&r&8] &f" + message);
+        Util.message(Bukkit.getConsoleSender(),"&8[&a&lSUCCESS&r&8] &f - Troll" + message);
         break;
       case OUTLINE:
-        Util.message(Bukkit.getConsoleSender(),"&7" + message);
+        Util.message(Bukkit.getConsoleSender(),"&7Troll -" + message);
         break;
     }
   }

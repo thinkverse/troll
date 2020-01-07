@@ -1,6 +1,7 @@
 package dev.thinkverse.troll;
 
 import dev.thinkverse.troll.commands.TrollCommand;
+import dev.thinkverse.troll.utils.UpdateChecker;
 import dev.thinkverse.troll.utils.config.DefaultConfig;
 import dev.thinkverse.troll.utils.enums.LogLevel;
 import org.bukkit.command.CommandExecutor;
@@ -21,6 +22,7 @@ public final class TrollPlugin extends JavaPlugin {
     this.getLogger().log(LogLevel.INFO, "Troll Plugin enabled.");
 
     this.setVariables();
+    this.checkUpdates();
     this.loadConfig();
 
     this.registerCommand("troll", new TrollCommand(this), true);
@@ -35,14 +37,24 @@ public final class TrollPlugin extends JavaPlugin {
     this.defaultConfig = new DefaultConfig(this);
   }
 
+  public DefaultConfig getDefaultConfig() {
+    return this.defaultConfig;
+  }
+
   private void loadConfig() {
     this.defaultConfig.getConfig().options().copyDefaults(true);
     this.defaultConfig.saveDefaultConfig();
     this.defaultConfig.saveConfig();
   }
 
-  public DefaultConfig getDefaultConfig() {
-    return this.defaultConfig;
+  private void checkUpdates() {
+    new UpdateChecker(this, 74111).getVersion(version -> {
+      if (this.getDescription().getVersion().equalsIgnoreCase(version)) {
+        getLogger().log(LogLevel.INFO, "There is not a new update available.");
+      } else {
+        getLogger().log(LogLevel.INFO, "There is a new update available for " + getDescription().getName());
+      }
+    });
   }
 
   @Override

@@ -2,6 +2,7 @@ package dev.thinkverse.troll.commands;
 
 import dev.thinkverse.troll.TrollPlugin;
 import dev.thinkverse.troll.commands.admin.ReloadCommand;
+import dev.thinkverse.troll.commands.admin.VersionCommand;
 import dev.thinkverse.troll.commands.trolls.*;
 import dev.thinkverse.troll.utils.Util;
 import dev.thinkverse.troll.commands.abstraction.SubCommand;
@@ -24,7 +25,7 @@ public class TrollCommand implements CommandExecutor, TabCompleter {
 
   private ArrayList<SubCommand> trolls = new ArrayList<>();
 
-  private final String[] COMMANDS = {"slap", "fling", "blind", "speak", "smite", "reload"};
+  private final String[] COMMANDS = {"slap", "fling", "blind", "speak", "smite", "reload", "version"};
 
   public TrollCommand(TrollPlugin plugin) {
     this.plugin = plugin;
@@ -38,6 +39,7 @@ public class TrollCommand implements CommandExecutor, TabCompleter {
     trolls.add(new SpeakCommand());
     trolls.add(new SmiteCommand());
     trolls.add(new ReloadCommand());
+    trolls.add(new VersionCommand());
   }
 
   @Override
