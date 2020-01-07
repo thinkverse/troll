@@ -24,6 +24,9 @@ public class BlindCommand extends SubCommand {
   public String getPermission() { return null; }
 
   @Override
+  public String[] getPermissions() { return new String[0]; }
+
+  @Override
   public String getUsage() {
     return "/troll blind <player> [duration]";
   }

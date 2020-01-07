@@ -22,6 +22,9 @@ public class SpeakCommand extends SubCommand {
   public String getPermission() { return null; }
 
   @Override
+  public String[] getPermissions() { return new String[0]; }
+
+  @Override
   public String getUsage() {
     return "/troll speak <player>";
   }

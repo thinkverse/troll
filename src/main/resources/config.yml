@@ -14,3 +14,5 @@ troll:
   blindness:
     duration: 100
     amplifier: 0
+  smite:
+    damage: true

@@ -20,13 +20,16 @@ public class ReloadCommand extends SubCommand {
   public String getPermission() { return "troll.admin"; }
 
   @Override
+  public String[] getPermissions() { return new String[0]; }
+
+  @Override
   public String getUsage() {
     return "/troll reload";
   }
 
   @Override
   public void onCommand(TrollPlugin plugin, Player player, String[] args) {
-    if (!player.hasPermission(this.getPermission())) {
+    if (!checkPermission(player)) {
       Util.message(player, plugin.getDefaultConfig().getConfig().getString("prefix") + plugin.getDefaultConfig().getConfig().getString("no-permission"));
     } else if (args.length >= 2) {
       Util.message(player, this.getUsage());
