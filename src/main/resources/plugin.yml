@@ -1,4 +1,4 @@
-name: Troll
+name: TrollPlugin
 version: ${project.version}
 main: dev.thinkverse.troll.TrollPlugin
 api-version: 1.15

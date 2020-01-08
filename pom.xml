@@ -9,7 +9,7 @@
     <version>0.0.3-alpha</version>
     <packaging>jar</packaging>
 
-    <name>Troll</name>
+    <name>TrollPlugin</name>
 
     <description>1.15.1 Open Source Troll plugin</description>
     <properties>

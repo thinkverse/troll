@@ -21,22 +21,25 @@ public final class TrollPlugin extends JavaPlugin {
   private DefaultConfig defaultConfig;
 
   @Override
+  public void onLoad() { this.logPluginStatus("Loading"); }
+
+  @Override
   public void onEnable() {
-    this.getLogger().log(LogLevel.INFO, "Troll Plugin enabled.");
+    this.logPluginStatus("Enabling");
 
     this.setVariables();
     this.checkUpdates();
     this.loadConfig();
 
-    setMetrics(new MetricsLite(this));
+    this.setMetrics();
 
     this.registerCommand("troll", new TrollCommand(this), true);
   }
 
   @Override
-  public void onDisable() {
-    this.getLogger().log(LogLevel.INFO, "Troll Plugin disabled.");
-  }
+  public void onDisable() { this.logPluginStatus("Disabling"); }
+
+  private void setMetrics() { this.metrics = new MetricsLite(this); }
 
   private void setVariables() {
     this.defaultConfig = new DefaultConfig(this);
@@ -55,16 +58,14 @@ public final class TrollPlugin extends JavaPlugin {
   private void checkUpdates() {
     new UpdateChecker(this, 74111).getVersion(version -> {
       if (this.getDescription().getVersion().equalsIgnoreCase(version)) {
-        getLogger().log(LogLevel.INFO, "There is not a new update available.");
+        getLogger().log(LogLevel.INFO, "No new update available.");
       } else {
-        getLogger().log(LogLevel.INFO, "There is a new update available for " + getDescription().getName());
+        getLogger().log(LogLevel.INFO, "New update available.");
       }
     });
   }
 
-  public void setMetrics(MetricsLite metrics) { this.metrics = metrics; }
-
-  public MetricsLite getMetrics() { return metrics; }
+  private void logPluginStatus(String status) { this.getLogger().log(LogLevel.INFO, status + " " + this.getDescription().getName() + " v" + this.getDescription().getVersion()); }
 
   @NotNull
   @Override
