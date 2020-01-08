@@ -4,17 +4,20 @@ import dev.thinkverse.troll.commands.TrollCommand;
 import dev.thinkverse.troll.utils.UpdateChecker;
 import dev.thinkverse.troll.utils.config.DefaultConfig;
 import dev.thinkverse.troll.utils.enums.LogLevel;
+import dev.thinkverse.troll.utils.metrics.MetricsLite;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 import dev.thinkverse.troll.utils.Logger;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
 public final class TrollPlugin extends JavaPlugin {
   private final Logger logger = new Logger();
 
+  private MetricsLite metrics;
   private DefaultConfig defaultConfig;
 
   @Override
@@ -24,6 +27,8 @@ public final class TrollPlugin extends JavaPlugin {
     this.setVariables();
     this.checkUpdates();
     this.loadConfig();
+
+    setMetrics(new MetricsLite(this));
 
     this.registerCommand("troll", new TrollCommand(this), true);
   }
@@ -57,6 +62,11 @@ public final class TrollPlugin extends JavaPlugin {
     });
   }
 
+  public void setMetrics(MetricsLite metrics) { this.metrics = metrics; }
+
+  public MetricsLite getMetrics() { return metrics; }
+
+  @NotNull
   @Override
   public Logger getLogger() {  return this.logger; }
   protected final void registerEvents(Listener listener) {
