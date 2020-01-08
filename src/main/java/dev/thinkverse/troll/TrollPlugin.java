@@ -1,7 +1,8 @@
 package dev.thinkverse.troll;
 
 import dev.thinkverse.troll.commands.TrollCommand;
-import dev.thinkverse.troll.utils.UpdateChecker;
+import dev.thinkverse.troll.utils.plugin.SemanticVersion;
+import dev.thinkverse.troll.utils.plugin.UpdateChecker;
 import dev.thinkverse.troll.utils.config.DefaultConfig;
 import dev.thinkverse.troll.utils.enums.LogLevel;
 import dev.thinkverse.troll.utils.metrics.MetricsLite;
@@ -12,12 +13,14 @@ import org.bukkit.plugin.java.JavaPlugin;
 import dev.thinkverse.troll.utils.Logger;
 import org.jetbrains.annotations.NotNull;
 
+import java.text.ParseException;
 import java.util.Objects;
 
 public final class TrollPlugin extends JavaPlugin {
   private final Logger logger = new Logger();
 
   private MetricsLite metrics;
+  private SemanticVersion semanticVersion;
   private DefaultConfig defaultConfig;
 
   @Override
@@ -28,7 +31,14 @@ public final class TrollPlugin extends JavaPlugin {
     this.logPluginStatus("Enabling");
 
     this.setVariables();
-    this.checkUpdates();
+
+    try {
+      this.setSemanticVersion(this.getDescription().getVersion());
+      this.checkUpdates();
+    } catch (ParseException exception) {
+      this.getLogger().log(LogLevel.INFO, "Issue parsing plugin version: " + exception.getMessage());
+    }
+
     this.loadConfig();
 
     this.setMetrics();
@@ -38,6 +48,10 @@ public final class TrollPlugin extends JavaPlugin {
 
   @Override
   public void onDisable() { this.logPluginStatus("Disabling"); }
+
+  private void setSemanticVersion(@NotNull String version) throws ParseException { this.semanticVersion = new SemanticVersion(version); }
+
+  public SemanticVersion getSemanticVersion() { return semanticVersion; }
 
   private void setMetrics() { this.metrics = new MetricsLite(this); }
 
@@ -57,7 +71,7 @@ public final class TrollPlugin extends JavaPlugin {
 
   private void checkUpdates() {
     new UpdateChecker(this, 74111).getVersion(version -> {
-      if (this.getDescription().getVersion().equalsIgnoreCase(version)) {
+      if (this.getSemanticVersion().isUpdateFor(version)) {
         getLogger().log(LogLevel.INFO, "No new update available.");
       } else {
         getLogger().log(LogLevel.INFO, "New update available.");
