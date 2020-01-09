@@ -38,7 +38,7 @@ public class BlindCommand extends SubCommand {
 
   @Override
   public void onCommand(@NotNull TrollPlugin plugin, @NotNull Player player, @NotNull String[] args) {
-    final int duration = plugin.getDefaultConfig().getConfig().getInt("troll.blindness.duration");
+    int duration = plugin.getDefaultConfig().getConfig().getInt("troll.blindness.duration");
     final int amplifier = plugin.getDefaultConfig().getConfig().getInt("troll.blindness.amplifier");
 
     if (args.length == 1) {
@@ -50,6 +50,7 @@ public class BlindCommand extends SubCommand {
         if (target.hasPermission("troll.bypass.*") || target.hasPermission("troll.bypass.blind")) {
           Util.message(player, String.format("Too bad, %s has really good vision..", target.getName()));
         } else {
+          if (plugin.getServerVersion().startsWith("1.13")) { duration = (int) (duration * 4); }
           target.addPotionEffect(PotionEffectType.BLINDNESS.createEffect(duration, amplifier));
 
           Util.message(target, String.format("&c%s blinded you.", player.getName()));
@@ -71,6 +72,7 @@ public class BlindCommand extends SubCommand {
             plugin.getLogger().log(Level.WARNING, exception.getMessage());
           }
 
+          if (plugin.getServerVersion().startsWith("1.13")) { player_duration = (int) (player_duration * 4); }
           target.addPotionEffect(PotionEffectType.BLINDNESS.createEffect(player_duration * 20, amplifier));
 
           Util.message(target, String.format("&c%s blinded you.", player.getName()));

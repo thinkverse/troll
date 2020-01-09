@@ -5,6 +5,7 @@ import dev.thinkverse.troll.utils.plugin.UpdateChecker;
 import dev.thinkverse.troll.utils.config.DefaultConfig;
 import dev.thinkverse.troll.utils.metrics.MetricsLite;
 import dev.thinkverse.troll.commands.TrollCommand;
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandExecutor;
 import org.jetbrains.annotations.NotNull;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -13,11 +14,14 @@ import org.bukkit.event.Listener;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public final class TrollPlugin extends JavaPlugin {
   private MetricsLite metrics;
   private SemanticVersion semanticVersion;
   private DefaultConfig defaultConfig;
+  private String version;
 
   @Override
   public void onEnable() {
@@ -43,7 +47,10 @@ public final class TrollPlugin extends JavaPlugin {
 
   private void setMetrics() { this.metrics = new MetricsLite(this); }
 
+  public String getServerVersion() { return version; }
+
   private void setVariables() {
+    this.version = getMinecraftVersion();
     this.defaultConfig = new DefaultConfig(this);
   }
 
@@ -65,6 +72,12 @@ public final class TrollPlugin extends JavaPlugin {
         this.getLogger().log(Level.INFO, "No new version available.");
       }
     });
+  }
+
+  protected final String getMinecraftVersion() {
+    Matcher matcher = Pattern.compile("(\\(MC: )([\\d\\.]+)(\\))").matcher(Bukkit.getVersion());
+    if (matcher.find()) { return matcher.group(2); }
+    return null;
   }
 
   protected final void registerEvents(Listener listener) {
