@@ -1,7 +1,6 @@
 package dev.thinkverse.troll.utils.config;
 
 import dev.thinkverse.troll.TrollPlugin;
-import dev.thinkverse.troll.utils.enums.LogLevel;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -11,6 +10,7 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.nio.charset.StandardCharsets;
 import java.util.Objects;
+import java.util.logging.Level;
 
 public final class DefaultConfig {
   private final String filename = "config.yml";
@@ -46,7 +46,7 @@ public final class DefaultConfig {
     try {
       getConfig().save(this.file);
     } catch (IOException exception) {
-      plugin.getLogger().log(LogLevel.WARNING, exception.getMessage());
+      plugin.getLogger().log(Level.WARNING, exception.getMessage());
     }
   }
 

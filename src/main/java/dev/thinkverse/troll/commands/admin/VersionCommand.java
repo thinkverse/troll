@@ -37,12 +37,11 @@ public class VersionCommand extends SubCommand {
   }
 
   private void checkUpdates(TrollPlugin plugin, Player player) {
-    new UpdateChecker(plugin, 74111).getVersion(version -> {
-      Util.message(player, String.format(plugin.getDefaultConfig().getConfig().getString("prefix") + "Current version: &f%s", plugin.getDescription().getVersion()));
+    Util.message(player, String.format(plugin.getDefaultConfig().getConfig().getString("prefix") + "Current version: &f%s", plugin.getDescription().getVersion()));
 
-      if (!plugin.getSemanticVersion().isUpdateFor(version)) {
-        Util.message(player, String.format("&aUpdate available: &f%s", version.toString()));
-        Util.notify(player, "troll.notify", String.format(plugin.getDefaultConfig().getConfig().getString("prefix") + "&aUpdate available: &f%s", version.toString()));
+    new UpdateChecker(plugin, 74111).getVersion(remote -> {
+      if (remote.isUpdateFor(plugin.getSemanticVersion())) {
+        Util.message(player, String.format("&aNew version available: &f%s", remote.toString()));
       }
     });
   }

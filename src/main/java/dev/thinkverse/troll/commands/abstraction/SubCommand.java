@@ -6,6 +6,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public abstract class SubCommand {
   @NotNull
@@ -25,5 +26,5 @@ public abstract class SubCommand {
     return player.hasPermission(getPermission());
   }
 
-  protected boolean checkPermissions(@NotNull Player player) { return Arrays.stream(getPermissions()).anyMatch(player::hasPermission); }
+  protected boolean checkPermissions(@NotNull Player player) { return Arrays.stream(Objects.requireNonNull(getPermissions())).anyMatch(player::hasPermission); }
 }

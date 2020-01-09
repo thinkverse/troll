@@ -1,7 +1,6 @@
 package dev.thinkverse.troll.utils.plugin;
 
 import dev.thinkverse.troll.TrollPlugin;
-import dev.thinkverse.troll.utils.enums.LogLevel;
 import org.bukkit.Bukkit;
 
 import java.io.IOException;
@@ -10,6 +9,7 @@ import java.net.URL;
 import java.text.ParseException;
 import java.util.Scanner;
 import java.util.function.Consumer;
+import java.util.logging.Level;
 
 public final class UpdateChecker {
   private TrollPlugin plugin;
@@ -26,9 +26,9 @@ public final class UpdateChecker {
         if (scanner.hasNext()) consumer.accept(new SemanticVersion(scanner.next()));
       } catch (IOException | ParseException exception) {
         if (exception instanceof IOException) {
-          this.plugin.getLogger().log(LogLevel.INFO, "Cannot search for updates: " + exception.getMessage());
+          this.plugin.getLogger().log(Level.INFO, "Cannot search for updates: " + exception.getMessage());
         } else {
-          this.plugin.getLogger().log(LogLevel.INFO, "Issue parsing plugin version: " + exception.getMessage());
+          this.plugin.getLogger().log(Level.INFO, "Issue parsing plugin version: " + exception.getMessage());
         }
       }
     });

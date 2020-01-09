@@ -6,7 +6,6 @@ import dev.thinkverse.troll.commands.admin.VersionCommand;
 import dev.thinkverse.troll.commands.trolls.*;
 import dev.thinkverse.troll.utils.Util;
 import dev.thinkverse.troll.commands.abstraction.SubCommand;
-import dev.thinkverse.troll.utils.enums.LogLevel;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -19,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Level;
 
 public class TrollCommand implements CommandExecutor, TabCompleter {
   private TrollPlugin plugin;
@@ -63,7 +63,7 @@ public class TrollCommand implements CommandExecutor, TabCompleter {
             try {
               troll.onCommand(this.plugin, player, args);
             } catch (Exception exception) {
-              plugin.getLogger().log(LogLevel.ERROR, exception.getMessage());
+              plugin.getLogger().log(Level.SEVERE, exception.getMessage());
             }
 
             break;

@@ -3,12 +3,12 @@ package dev.thinkverse.troll.commands.trolls;
 import dev.thinkverse.troll.TrollPlugin;
 import dev.thinkverse.troll.utils.Util;
 import dev.thinkverse.troll.commands.abstraction.SubCommand;
-import dev.thinkverse.troll.utils.enums.LogLevel;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
+import java.util.logging.Level;
 
 public class SlapCommand extends SubCommand {
   private TrollPlugin plugin;
@@ -69,7 +69,7 @@ public class SlapCommand extends SubCommand {
           try {
             player_strength = Integer.parseInt(args[2]);
           } catch (NumberFormatException exception) {
-            plugin.getLogger().log(LogLevel.WARNING, exception.getMessage());
+            plugin.getLogger().log(Level.WARNING, exception.getMessage());
           }
 
           /* Make sure the strength passed by the player doesn't exceed 10 */
