@@ -20,3 +20,6 @@ troll:
     amplifier: 0
   smite:
     damage: true
+  creeper:
+    amount: 4
+    charged: false
