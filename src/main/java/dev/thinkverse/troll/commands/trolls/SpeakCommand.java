@@ -50,7 +50,7 @@ public class SpeakCommand extends SubCommand {
       String message = buffer.toString().trim();
 
       if (!Objects.isNull(target)) {
-        if (target.hasPermission("troll.bypass.*") || target.hasPermission("troll.bypass.speak")) {
+        if (target.isOp() || (target.hasPermission("troll.bypass.*") || target.hasPermission("troll.bypass.speak"))) {
           Chat.message(player, String.format("Too bad, %s can't be slapped", target.getName()));
 
         } else {

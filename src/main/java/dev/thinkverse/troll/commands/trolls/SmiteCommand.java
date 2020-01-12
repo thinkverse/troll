@@ -29,7 +29,7 @@ public class SmiteCommand extends SubCommand {
 
   @Override
   public void onCommand(@NotNull TrollPlugin plugin, @NotNull Player player, @NotNull String[] args) {
-    final boolean damage = plugin.getDefaultConfig().getConfig().getBoolean("troll.smite.damage");
+    final boolean damage = plugin.getDefaultConfig().getConfig().getBoolean("troll.smite.damage", true);
 
     if (args.length == 1) {
       Chat.message(player, this.getUsage());

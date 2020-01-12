@@ -38,8 +38,8 @@ public class BlindCommand extends SubCommand {
 
   @Override
   public void onCommand(@NotNull TrollPlugin plugin, @NotNull Player player, @NotNull String[] args) {
-    int duration = plugin.getDefaultConfig().getConfig().getInt("troll.blindness.duration");
-    final int amplifier = plugin.getDefaultConfig().getConfig().getInt("troll.blindness.amplifier");
+    int duration = plugin.getDefaultConfig().getConfig().getInt("troll.blindness.duration", 100);
+    final int amplifier = plugin.getDefaultConfig().getConfig().getInt("troll.blindness.amplifier", 0);
 
     if (args.length == 1) {
       player.sendMessage(this.getUsage());
