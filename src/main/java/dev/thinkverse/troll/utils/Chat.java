@@ -7,18 +7,18 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 
-public final class Util {
+public final class Chat {
   public static void message(@NotNull CommandSender sender, @NotNull String... message) {
-    Arrays.stream(message).map(Util::translate).forEach(sender::sendMessage);
+    Arrays.stream(message).map(Chat::translate).forEach(sender::sendMessage);
   }
 
   public static void broadcast(@NotNull String... message) {
-    Arrays.stream(message).map(Util::translate).forEach(Bukkit::broadcastMessage);
+    Arrays.stream(message).map(Chat::translate).forEach(Bukkit::broadcastMessage);
   }
 
   public static void notify(@NotNull CommandSender sender, @NotNull String permission, @NotNull String... message) {
     Bukkit.getOnlinePlayers().forEach(player -> {
-      if (player.hasPermission(permission) && !(player.equals(sender))) Util.message(player, message);
+      if (player.hasPermission(permission) && !(player.equals(sender))) Chat.message(player, message);
     });
   }
 
@@ -28,7 +28,7 @@ public final class Util {
         if (player.hasPermission(node) && !(player.equals(sender))) return true;
       }
       return false;
-    }).forEach(player -> Util.message(player, message));
+    }).forEach(player -> Chat.message(player, message));
   }
 
   @NotNull

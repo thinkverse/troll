@@ -3,7 +3,7 @@ package dev.thinkverse.troll.commands.admin;
 import dev.thinkverse.troll.TrollPlugin;
 import dev.thinkverse.troll.commands.abstraction.SubCommand;
 import dev.thinkverse.troll.utils.plugin.UpdateChecker;
-import dev.thinkverse.troll.utils.Util;
+import dev.thinkverse.troll.utils.Chat;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
@@ -28,20 +28,20 @@ public class VersionCommand extends SubCommand {
   @Override
   public void onCommand(@NotNull TrollPlugin plugin, @NotNull Player player, @NotNull String[] args) {
     if (!checkPermissions(player)) {
-      Util.message(player, plugin.getDefaultConfig().getConfig().getString("prefix") + plugin.getDefaultConfig().getConfig().getString("no-permission"));
+      Chat.message(player, plugin.getDefaultConfig().getConfig().getString("prefix") + plugin.getDefaultConfig().getConfig().getString("no-permission"));
     } else if (args.length >= 2) {
-      Util.message(player, this.getUsage());
+      Chat.message(player, this.getUsage());
     } else {
       checkUpdates(plugin, player);
     }
   }
 
   private void checkUpdates(TrollPlugin plugin, Player player) {
-    Util.message(player, String.format(plugin.getDefaultConfig().getConfig().getString("prefix") + "Current version: &f%s", plugin.getDescription().getVersion()));
+    Chat.message(player, String.format(plugin.getDefaultConfig().getConfig().getString("prefix") + "Current version: &f%s", plugin.getDescription().getVersion()));
 
     new UpdateChecker(plugin, 74111).getVersion(remote -> {
       if (remote.isUpdateFor(plugin.getSemanticVersion())) {
-        Util.message(player, String.format("&aNew version available: &f%s", remote.toString()));
+        Chat.message(player, String.format("&aNew version available: &f%s", remote.toString()));
       }
     });
   }

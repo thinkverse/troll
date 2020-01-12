@@ -1,7 +1,7 @@
 package dev.thinkverse.troll.commands.trolls;
 
 import dev.thinkverse.troll.TrollPlugin;
-import dev.thinkverse.troll.utils.Util;
+import dev.thinkverse.troll.utils.Chat;
 import dev.thinkverse.troll.commands.abstraction.SubCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -37,7 +37,7 @@ public class SpeakCommand extends SubCommand {
   @Override
   public void onCommand(@NotNull TrollPlugin plugin, @NotNull Player player, @NotNull String[] args) {
     if (args.length <= 2) {
-      Util.message(player, this.getUsage());
+      Chat.message(player, this.getUsage());
     } else {
       final Player target = Bukkit.getPlayer(args[1]);
 
@@ -51,14 +51,14 @@ public class SpeakCommand extends SubCommand {
 
       if (!Objects.isNull(target)) {
         if (target.hasPermission("troll.bypass.*") || target.hasPermission("troll.bypass.speak")) {
-          Util.message(player, String.format("Too bad, %s can't be slapped", target.getName()));
+          Chat.message(player, String.format("Too bad, %s can't be slapped", target.getName()));
 
         } else {
           target.chat(message);
-          Util.message(player, String.format("&aYou spoke as %s.", target.getName()));
+          Chat.message(player, String.format("&aYou spoke as %s.", target.getName()));
         }
       } else {
-        Util.message(player, "&aPlayer doesn't exist.");
+        Chat.message(player, "&aPlayer doesn't exist.");
       }
     }
   }

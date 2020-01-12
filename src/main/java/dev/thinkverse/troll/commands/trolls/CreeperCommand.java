@@ -2,7 +2,7 @@ package dev.thinkverse.troll.commands.trolls;
 
 import dev.thinkverse.troll.TrollPlugin;
 import dev.thinkverse.troll.commands.abstraction.SubCommand;
-import dev.thinkverse.troll.utils.Util;
+import dev.thinkverse.troll.utils.Chat;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Creeper;
 import org.bukkit.entity.EntityType;
@@ -42,19 +42,19 @@ public class CreeperCommand extends SubCommand {
   @Override
   public void onCommand(@NotNull TrollPlugin plugin, @NotNull Player player, @NotNull String[] args) {
     if (args.length == 1) {
-      Util.message(player, this.getUsage());
+      Chat.message(player, this.getUsage());
     } else if (args.length == 2) {
       final Player target = Bukkit.getPlayer(args[1]);
 
       if (!Objects.isNull(target)) {
         if (target.hasPermission("troll.bypass.*") || target.hasPermission("troll.bypass.spawn")) {
-          Util.message(player, String.format("Ooh, seems %s is protected by Herobrine.", target.getName()));
+          Chat.message(player, String.format("Ooh, seems %s is protected by Herobrine.", target.getName()));
         } else {
           Creeper creeper = (Creeper) target.getWorld().spawnEntity(target.getLocation(), EntityType.CREEPER);
           creeper.setTarget(target);
 
-          Util.message(target, String.format("&c%s sent you a surprise.", player.getName()));
-          Util.message(player, String.format("&aYou sent %s a friendly creeper.", target.getName()));
+          Chat.message(target, String.format("&c%s sent you a surprise.", player.getName()));
+          Chat.message(player, String.format("&aYou sent %s a friendly creeper.", target.getName()));
         }
       }
     }

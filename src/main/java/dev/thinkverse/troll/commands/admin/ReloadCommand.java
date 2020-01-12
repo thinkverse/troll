@@ -2,7 +2,7 @@ package dev.thinkverse.troll.commands.admin;
 
 import dev.thinkverse.troll.TrollPlugin;
 import dev.thinkverse.troll.commands.abstraction.SubCommand;
-import dev.thinkverse.troll.utils.Util;
+import dev.thinkverse.troll.utils.Chat;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
@@ -33,12 +33,12 @@ public class ReloadCommand extends SubCommand {
   @Override
   public void onCommand(@NotNull TrollPlugin plugin, @NotNull Player player, @NotNull String[] args) {
     if (!checkPermission(player)) {
-      Util.message(player, plugin.getDefaultConfig().getConfig().getString("prefix") + plugin.getDefaultConfig().getConfig().getString("no-permission"));
+      Chat.message(player, plugin.getDefaultConfig().getConfig().getString("prefix") + plugin.getDefaultConfig().getConfig().getString("no-permission"));
     } else if (args.length >= 2) {
-      Util.message(player, this.getUsage());
+      Chat.message(player, this.getUsage());
     } else {
       plugin.getDefaultConfig().reloadConfig();
-      Util.message(player, plugin.getDefaultConfig().getConfig().getString("prefix") + "&aConfig reloaded.");
+      Chat.message(player, plugin.getDefaultConfig().getConfig().getString("prefix") + "&aConfig reloaded.");
     }
   }
 }

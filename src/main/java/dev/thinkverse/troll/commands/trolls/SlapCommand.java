@@ -1,7 +1,7 @@
 package dev.thinkverse.troll.commands.trolls;
 
 import dev.thinkverse.troll.TrollPlugin;
-import dev.thinkverse.troll.utils.Util;
+import dev.thinkverse.troll.utils.Chat;
 import dev.thinkverse.troll.commands.abstraction.SubCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -43,18 +43,18 @@ public class SlapCommand extends SubCommand {
     this.setStrength(plugin.getDefaultConfig().getConfig().getDouble("troll.slap.strength"));
 
     if (args.length == 1) {
-      Util.message(player, this.getUsage());
+      Chat.message(player, this.getUsage());
     } else if (args.length == 2) {
       final Player target = Bukkit.getPlayer(args[1]);
 
       if (!Objects.isNull(target)) {
         if (target.hasPermission("troll.bypass.*") || target.hasPermission("troll.bypass.slap")) {
-          Util.message(player, String.format("&cToo bad, %s can't be slapped", target.getName()));
+          Chat.message(player, String.format("&cToo bad, %s can't be slapped", target.getName()));
         } else {
           target.damage(strength);
 
-          Util.message(target, String.format("&c%s slapped you silly.", player.getName()));
-          Util.message(player, String.format("&aYou slapped %s silly.", target.getName()));
+          Chat.message(target, String.format("&c%s slapped you silly.", player.getName()));
+          Chat.message(player, String.format("&aYou slapped %s silly.", target.getName()));
         }
       }
     } else if (args.length > 2) {
@@ -62,7 +62,7 @@ public class SlapCommand extends SubCommand {
 
       if (!Objects.isNull(target)) {
         if (target.hasPermission("troll.bypass.*") || target.hasPermission("troll.bypass.slap")) {
-          Util.message(player, String.format("&cToo bad, %s can't be slapped", target.getName()));
+          Chat.message(player, String.format("&cToo bad, %s can't be slapped", target.getName()));
         } else {
           int player_strength = 0;
 
@@ -77,8 +77,8 @@ public class SlapCommand extends SubCommand {
 
           target.damage(player_strength);
 
-          Util.message(target, String.format("&c%s slapped you silly.", player.getName()));
-          Util.message(player, String.format("&aYou slapped %s silly, with the strength of %d horses.", target.getName(), player_strength));
+          Chat.message(target, String.format("&c%s slapped you silly.", player.getName()));
+          Chat.message(player, String.format("&aYou slapped %s silly, with the strength of %d horses.", target.getName(), player_strength));
         }
       }
     }

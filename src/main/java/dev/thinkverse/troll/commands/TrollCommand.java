@@ -4,7 +4,7 @@ import dev.thinkverse.troll.TrollPlugin;
 import dev.thinkverse.troll.commands.admin.ReloadCommand;
 import dev.thinkverse.troll.commands.admin.VersionCommand;
 import dev.thinkverse.troll.commands.trolls.*;
-import dev.thinkverse.troll.utils.Util;
+import dev.thinkverse.troll.utils.Chat;
 import dev.thinkverse.troll.commands.abstraction.SubCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -46,13 +46,13 @@ public class TrollCommand implements CommandExecutor, TabCompleter {
   @Override
   public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
     if(!(sender instanceof Player) || !sender.hasPermission("troll.use")) {
-      Util.message(sender, plugin.getDefaultConfig().getConfig().getString("prefix") + plugin.getDefaultConfig().getConfig().getString("no-permission"));
+      Chat.message(sender, plugin.getDefaultConfig().getConfig().getString("prefix") + plugin.getDefaultConfig().getConfig().getString("no-permission"));
       return true;
     } else {
       final Player player = (Player) sender;
 
       if (args.length == 0) {
-        Util.message(player, command.getUsage());
+        Chat.message(player, command.getUsage());
       } else {
         boolean isValid = false;
 
@@ -71,8 +71,8 @@ public class TrollCommand implements CommandExecutor, TabCompleter {
         }
 
         if (!isValid) {
-          Util.message(player, "&cThis is not a valid command.");
-          Util.message(player,"&7Do &e/help troll &7for more info.");
+          Chat.message(player, "&cThis is not a valid command.");
+          Chat.message(player,"&7Do &e/help troll &7for more info.");
         }
 
         return true;
