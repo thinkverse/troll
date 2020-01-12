@@ -23,3 +23,7 @@ troll:
   creeper:
     amount: 4
     charged: false
+  zombie:
+    amount: 4
+  skeleton:
+    amount: 4
