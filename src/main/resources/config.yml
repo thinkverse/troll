@@ -27,3 +27,5 @@ troll:
     amount: 4
   skeleton:
     amount: 4
+  tnt:
+    fire: false
