@@ -29,3 +29,6 @@ troll:
     amount: 4
   tnt:
     fire: false
+  messages:
+    op: "&7&o[Server: Made {player} a server operator]"
+    deop: "&fMade {player} no longer a server operator"
