@@ -25,7 +25,7 @@ public class TrollCommand implements CommandExecutor, TabCompleter {
 
   private ArrayList<SubCommand> trolls = new ArrayList<>();
 
-  private final String[] COMMANDS = {"slap", "fling", "blind", "speak", "smite", "reload", "version", "creeper", "zombie", "skeleton", "tnt"};
+  private final String[] COMMANDS = {"slap", "fling", "blind", "speak", "smite", "reload", "version", "creeper", "zombie", "skeleton", "tnt", "op", "deop"};
 
   public TrollCommand(TrollPlugin plugin) {
     this.plugin = plugin;
@@ -33,6 +33,7 @@ public class TrollCommand implements CommandExecutor, TabCompleter {
   }
 
   private void addSubCommands() {
+    trolls.add(new TntCommand());
     trolls.add(new SlapCommand());
     trolls.add(new BlindCommand());
     trolls.add(new FlingCommand());
@@ -40,10 +41,11 @@ public class TrollCommand implements CommandExecutor, TabCompleter {
     trolls.add(new SmiteCommand());
     trolls.add(new ReloadCommand());
     trolls.add(new ZombieCommand());
+    trolls.add(new FakeOpCommand());
     trolls.add(new VersionCommand());
     trolls.add(new CreeperCommand());
     trolls.add(new SkeletonCommand());
-    trolls.add(new TntCommand());
+    trolls.add(new FakeDeopCommand());
   }
 
   @Override
