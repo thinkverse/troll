@@ -13,7 +13,7 @@
 
 > TrollPlugin is an open-source troll plugin for SpigotMC servers
 
-### 🏠 [Homepage](thinkverse.dev/troll)
+### 🏠 [Homepage](https://www.spigotmc.org/resources/74111/)
 
 ## Author
 
