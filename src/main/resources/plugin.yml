@@ -1,7 +1,7 @@
 name: TrollPlugin
 version: ${project.version}
 main: dev.thinkverse.troll.TrollPlugin
-api-version: 1.13
+api-version: '1.13'
 authors: [Thinkverse]
 description: 1.15.1 Open Source Troll plugin
 website: thinkverse.dev
