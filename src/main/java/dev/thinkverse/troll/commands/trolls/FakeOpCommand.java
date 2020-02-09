@@ -39,7 +39,7 @@ public class FakeOpCommand extends SubCommand {
 
   @Override
   public void onCommand(@NotNull TrollPlugin plugin, @NotNull Player player, @NotNull String[] args) {
-    final String message = plugin.getDefaultConfig().getConfig().getString("troll.messages.op");
+    final String message = plugin.getConfig().getString("troll.messages.op");
 
     if (args.length == 1) {
       player.sendMessage(this.getUsage());

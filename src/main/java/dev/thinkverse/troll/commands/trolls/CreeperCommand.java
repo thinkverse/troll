@@ -56,8 +56,8 @@ public class CreeperCommand extends SubCommand {
         } else if (target.getLocation().getY() <= 60.0) {
           Chat.message(player, String.format("%s must be above ground.", target.getName()));
         } else {
-          final int amount = plugin.getDefaultConfig().getConfig().getInt("troll.creeper.amount", 4);
-          final boolean charged = plugin.getDefaultConfig().getConfig().getBoolean("troll.creeper.charged", false);
+          final int amount = plugin.getConfig().getInt("troll.creeper.amount", 4);
+          final boolean charged = plugin.getConfig().getBoolean("troll.creeper.charged", false);
 
           for (int i = 0; i < amount; i++) {
             try {

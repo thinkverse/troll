@@ -40,7 +40,7 @@ public class SlapCommand extends SubCommand {
   @Override
   public void onCommand(@NotNull TrollPlugin plugin, @NotNull Player player, @NotNull String[] args) {
     this.setPlugin(plugin);
-    this.setStrength(plugin.getDefaultConfig().getConfig().getDouble("troll.slap.strength", 10));
+    this.setStrength(plugin.getConfig().getDouble("troll.slap.strength", 10));
 
     if (args.length == 1) {
       Chat.message(player, this.getUsage());
@@ -87,8 +87,8 @@ public class SlapCommand extends SubCommand {
   private double getStrength() {
     if (this.strength > 10) {
       this.strength = 10;
-      this.getPlugin().getDefaultConfig().getConfig().set("troll.slap.strength", 10);
-      this.getPlugin().getDefaultConfig().saveConfig();
+      this.getPlugin().getConfig().set("troll.slap.strength", 10);
+      this.getPlugin().saveConfig();
     } return this.strength;
   }
 

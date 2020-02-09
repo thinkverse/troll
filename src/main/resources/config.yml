@@ -1,5 +1,5 @@
 # Plugin prefix
-prefix: "&e[&6Troll&e] "
+prefix: "&7[&6Troll&7]&r "
 # Message displayed with no permissions.
 no-permission: "&4You don't have permission to run that command."
 

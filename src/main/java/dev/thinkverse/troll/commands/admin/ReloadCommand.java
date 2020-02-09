@@ -33,12 +33,12 @@ public class ReloadCommand extends SubCommand {
   @Override
   public void onCommand(@NotNull TrollPlugin plugin, @NotNull Player player, @NotNull String[] args) {
     if (!checkPermission(player)) {
-      Chat.message(player, plugin.getDefaultConfig().getConfig().getString("prefix") + plugin.getDefaultConfig().getConfig().getString("no-permission"));
+      Chat.message(player, plugin.getConfig().getString("prefix") + plugin.getConfig().getString("no-permission"));
     } else if (args.length >= 2) {
       Chat.message(player, this.getUsage());
     } else {
-      // plugin.getDefaultConfig().reloadConfig();
-      Chat.message(player, plugin.getDefaultConfig().getConfig().getString("prefix") + "&aConfig reloaded.");
+      plugin.reloadConfig();
+      Chat.message(player, plugin.getConfig().getString("prefix") + "&aConfig reloaded.");
     }
   }
 }

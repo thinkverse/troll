@@ -59,7 +59,7 @@ public class TntCommand extends SubCommand {
 
           for (int i = 0; i < 10; i++) {
             TNTPrimed tnt = target.getWorld().spawn(location, TNTPrimed.class);
-            tnt.setIsIncendiary(plugin.getDefaultConfig().getConfig().getBoolean("troll.tnt.fire", false));
+            tnt.setIsIncendiary(plugin.getConfig().getBoolean("troll.tnt.fire", false));
             tnt.setFuseTicks(20);
           }
 
