@@ -37,7 +37,7 @@ public class ReloadCommand extends SubCommand {
     } else if (args.length >= 2) {
       Chat.message(player, this.getUsage());
     } else {
-      plugin.getDefaultConfig().reloadConfig();
+      // plugin.getDefaultConfig().reloadConfig();
       Chat.message(player, plugin.getDefaultConfig().getConfig().getString("prefix") + "&aConfig reloaded.");
     }
   }

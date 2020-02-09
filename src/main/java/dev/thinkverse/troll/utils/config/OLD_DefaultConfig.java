@@ -12,14 +12,14 @@ import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 import java.util.logging.Level;
 
-public final class DefaultConfig {
+public final class OLD_DefaultConfig {
   private final String filename = "config.yml";
   private final TrollPlugin plugin;
 
   private FileConfiguration configuration;
   private File file;
 
-  public DefaultConfig(final TrollPlugin plugin) { this.plugin = plugin; }
+  public OLD_DefaultConfig(final TrollPlugin plugin) { this.plugin = plugin; }
 
   public void reloadConfig() {
     if (this.file == null) this.file = new File(this.plugin.getDataFolder(), this.filename);

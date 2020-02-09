@@ -2,7 +2,7 @@ package dev.thinkverse.troll;
 
 import dev.thinkverse.troll.utils.plugin.SemanticVersion;
 import dev.thinkverse.troll.utils.plugin.UpdateChecker;
-import dev.thinkverse.troll.utils.config.DefaultConfig;
+import dev.thinkverse.troll.utils.config.OLD_DefaultConfig;
 import dev.thinkverse.troll.utils.metrics.MetricsLite;
 import dev.thinkverse.troll.commands.TrollCommand;
 import org.bukkit.Bukkit;
@@ -20,7 +20,7 @@ import java.util.regex.Pattern;
 public final class TrollPlugin extends JavaPlugin {
   private MetricsLite metrics;
   private SemanticVersion semanticVersion;
-  private DefaultConfig defaultConfig;
+  private OLD_DefaultConfig defaultConfig;
   private String version;
 
   @Override
@@ -51,17 +51,14 @@ public final class TrollPlugin extends JavaPlugin {
 
   private void setVariables() {
     this.version = getMinecraftVersion();
-    this.defaultConfig = new DefaultConfig(this);
+    this.defaultConfig = new OLD_DefaultConfig(this);
   }
 
-  public DefaultConfig getDefaultConfig() {
+  public OLD_DefaultConfig getDefaultConfig() {
     return this.defaultConfig;
   }
 
   private void loadConfig() {
-    this.defaultConfig.getConfig().options().copyDefaults(true);
-    this.defaultConfig.saveDefaultConfig();
-    this.defaultConfig.saveConfig();
   }
 
   private void checkUpdates() {
