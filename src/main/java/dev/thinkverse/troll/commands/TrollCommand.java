@@ -51,7 +51,7 @@ public class TrollCommand implements CommandExecutor, TabCompleter {
   @Override
   public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
     if(!(sender instanceof Player) || !sender.hasPermission("troll.use")) {
-      Chat.message(sender, plugin.getDefaultConfig().getConfig().getString("prefix") + plugin.getDefaultConfig().getConfig().getString("no-permission"));
+      Chat.message(sender, plugin.getConfig().getString("prefix") + plugin.getConfig().getString("no-permission"));
       return true;
     } else {
       final Player player = (Player) sender;

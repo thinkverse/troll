@@ -29,7 +29,7 @@ public class SmiteCommand extends SubCommand {
 
   @Override
   public void onCommand(@NotNull TrollPlugin plugin, @NotNull Player player, @NotNull String[] args) {
-    final boolean damage = plugin.getDefaultConfig().getConfig().getBoolean("troll.smite.damage", true);
+    final boolean damage = plugin.getConfig().getBoolean("troll.smite.damage", true);
 
     if (args.length == 1) {
       Chat.message(player, this.getUsage());
@@ -56,7 +56,7 @@ public class SmiteCommand extends SubCommand {
         } else {
 
           if (!checkPermissions(player)) {
-            Chat.message(player, plugin.getDefaultConfig().getConfig().getString("prefix") + plugin.getDefaultConfig().getConfig().getString("no-permission"));
+            Chat.message(player, plugin.getConfig().getString("prefix") + plugin.getConfig().getString("no-permission"));
           } else {
             strikeTarget(target, player_damage);
 

@@ -56,7 +56,7 @@ public class SkeletonCommand extends SubCommand {
         } else if (target.getLocation().getY() <= 60.0) {
           Chat.message(player, String.format("%s must be above ground.", target.getName()));
         } else {
-          final int amount = plugin.getDefaultConfig().getConfig().getInt("troll.skeleton.amount", 4);
+          final int amount = plugin.getConfig().getInt("troll.skeleton.amount", 4);
 
           for (int i = 0; i < amount; i++) {
             try {

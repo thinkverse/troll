@@ -1,12 +1,14 @@
 package dev.thinkverse.troll;
 
+import dev.thinkverse.troll.utils.config.Configuration;
+import dev.thinkverse.troll.utils.config.IConfiguration;
 import dev.thinkverse.troll.utils.plugin.SemanticVersion;
 import dev.thinkverse.troll.utils.plugin.UpdateChecker;
-import dev.thinkverse.troll.utils.config.DefaultConfig;
 import dev.thinkverse.troll.utils.metrics.MetricsLite;
 import dev.thinkverse.troll.commands.TrollCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandExecutor;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.jetbrains.annotations.NotNull;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.command.TabCompleter;
@@ -20,12 +22,14 @@ import java.util.regex.Pattern;
 public final class TrollPlugin extends JavaPlugin {
   private MetricsLite metrics;
   private SemanticVersion semanticVersion;
-  private DefaultConfig defaultConfig;
+  private IConfiguration configuration;
   private String version;
 
   @Override
   public void onEnable() {
     this.setVariables();
+
+    this.loadConfig();
 
     try {
       this.setSemanticVersion(this.getDescription().getVersion());
@@ -33,8 +37,6 @@ public final class TrollPlugin extends JavaPlugin {
     } catch (ParseException exception) {
       this.getLogger().log(Level.INFO, "Issue parsing plugin version: " + exception.getMessage());
     }
-
-    this.loadConfig();
 
     this.setMetrics();
 
@@ -51,17 +53,20 @@ public final class TrollPlugin extends JavaPlugin {
 
   private void setVariables() {
     this.version = getMinecraftVersion();
-    this.defaultConfig = new DefaultConfig(this);
   }
 
-  public DefaultConfig getDefaultConfig() {
-    return this.defaultConfig;
+  @Override
+  public FileConfiguration getConfig() {
+    return this.configuration.getConfig();
+  }
+
+  @Override
+  public void reloadConfig() {
+    this.configuration.reloadConfig();
   }
 
   private void loadConfig() {
-    this.defaultConfig.getConfig().options().copyDefaults(true);
-    this.defaultConfig.saveDefaultConfig();
-    this.defaultConfig.saveConfig();
+    this.configuration = new Configuration(this, "config.yml");
   }
 
   private void checkUpdates() {
